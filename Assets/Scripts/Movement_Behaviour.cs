@@ -27,7 +27,7 @@ public class Movement_Behaviour : MonoBehaviour {
             if(distance < 0.3f){
                 startMoving = false;
                 transform.GetChild(0).position = destination;
-                Game_Master.allowToClick = true;
+                Game_Master.MoveIsHappening = false;
             }
 
         }

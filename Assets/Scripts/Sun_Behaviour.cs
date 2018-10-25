@@ -35,7 +35,7 @@ public class Sun_Behaviour : MonoBehaviour {
         if (Game_Master.allowToClick)
         {
 
-            Game_Master.allowToClick = false;
+            Game_Master.MoveIsHappening = true;
             manager.AssignPlants(SunIndex);
             UpdatePlanetsArray();
             for (int i = 0; i < numberOfPlanets; i++)

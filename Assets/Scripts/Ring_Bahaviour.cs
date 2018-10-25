@@ -5,7 +5,7 @@ using UnityEngine;
 public class Ring_Bahaviour : MonoBehaviour {
 
 
-    public enum ColorCode { Red, Green, Orange };
+    public enum ColorCode { Red, Blue, Yellow, Purple };
     public ColorCode ringColor;
 
     // Use this for initialization
