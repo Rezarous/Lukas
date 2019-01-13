@@ -1,10 +1,12 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
-public  class Game_Master : MonoBehaviour {
+public class Game_Master : MonoBehaviour
+{
 
-
+    public string nextLevel;
     public GameObject[] gameField;
     public GameObject[] suns;
     public GameObject[] rings;
@@ -16,9 +18,9 @@ public  class Game_Master : MonoBehaviour {
     public static bool MoveIsHappening = false;
 
     //Level and camera stuff
-    public Vector3[] levelPositions;
-    public Vector3[] levelRotations;
-    public Vector3[] levelScales;
+    //public Vector3[] levelPositions;
+    //public Vector3[] levelRotations;
+    //public Vector3[] levelScales;
     public int level = 1;
     public bool goToNextLevel = false;
     private bool startMovingCamera = false;
@@ -26,7 +28,8 @@ public  class Game_Master : MonoBehaviour {
     private float cameraSpeed = 2.5f;
 
 
-    void Start () {
+    void Start()
+    {
 
         numberOfPlanets = gameField.Length;
         numberOfSuns = suns.Length;
@@ -42,9 +45,10 @@ public  class Game_Master : MonoBehaviour {
         camera = Camera.main;
         SetCamera();
     }
-	
 
-	void Update () {
+
+    void Update()
+    {
 
         allowToClick = !MoveIsHappening;
 
@@ -57,41 +61,43 @@ public  class Game_Master : MonoBehaviour {
             goToNextLevel = false;
         }
 
-        if (startMovingCamera)
-        {
-            if(!MoveIsHappening){
-                float distance = Vector3.Distance(camera.transform.position, levelPositions[level - 1]);
-                if (distance > 0.1f)
-                {
-                    allowToClick = false;
-                    distance = Vector3.Distance(camera.transform.position, levelPositions[level - 1]);
-                    MoveCamera();
-                }
-                else
-                {
-                    allowToClick = true;
-                    startMovingCamera = false;
-                }
-            }
-        }
+        // if (startMovingCamera)
+        // {
+        //     if(!MoveIsHappening){
+        //         float distance = Vector3.Distance(camera.transform.position, levelPositions[level - 1]);
+        //         if (distance > 0.1f)
+        //         {
+        //             allowToClick = false;
+        //             distance = Vector3.Distance(camera.transform.position, levelPositions[level - 1]);
+        //             MoveCamera();
+        //         }
+        //         else
+        //         {
+        //             allowToClick = true;
+        //             startMovingCamera = false;
+        //         }
+        //     }
+        // }
 
     }
 
 
     void MoveCamera()
     {
-        camera.transform.position = Vector3.Lerp(camera.transform.position, levelPositions[level - 1], cameraSpeed * Time.deltaTime);
-        camera.transform.rotation = Quaternion.Lerp(camera.transform.rotation, Quaternion.Euler(levelRotations[level - 1]), cameraSpeed * Time.deltaTime);
+        //camera.transform.position = Vector3.Lerp(camera.transform.position, levelPositions[level - 1], cameraSpeed * Time.deltaTime);
+        //camera.transform.rotation = Quaternion.Lerp(camera.transform.rotation, Quaternion.Euler(levelRotations[level - 1]), cameraSpeed * Time.deltaTime);
     }
 
 
-    void SetCamera(){
-        camera.transform.position = levelPositions[level - 1];
-        camera.transform.rotation = Quaternion.Euler(levelRotations[level - 1]);
+    void SetCamera()
+    {
+        //camera.transform.position = levelPositions[level - 1];
+        //camera.transform.rotation = Quaternion.Euler(levelRotations[level - 1]);
     }
 
 
-    public void UpdateGameField(int sunIndex){ 
+    public void UpdateGameField(int sunIndex)
+    {
 
         int firstIndex = 2 * sunIndex;
         GameObject temp = gameField[firstIndex + 2];
@@ -101,19 +107,22 @@ public  class Game_Master : MonoBehaviour {
         UpdateIndexOfPlanets();
     }
 
-    public void AssignPlants(int sunIndex){
+    public void AssignPlants(int sunIndex)
+    {
 
         allowToClick = false;
 
         int firstIndex = 2 * sunIndex;
         gameField[firstIndex].transform.parent = suns[sunIndex].transform.GetChild(0).GetChild(0);
-        gameField[firstIndex+1].transform.parent = suns[sunIndex].transform.GetChild(0).GetChild(1);
-        gameField[firstIndex+2].transform.parent = suns[sunIndex].transform.GetChild(0).GetChild(2);
+        gameField[firstIndex + 1].transform.parent = suns[sunIndex].transform.GetChild(0).GetChild(1);
+        gameField[firstIndex + 2].transform.parent = suns[sunIndex].transform.GetChild(0).GetChild(2);
         UpdateGameField(sunIndex);
     }
 
-    void UpdateIndexOfPlanets(){
-        for (int i = 0; i < gameField.Length; i++){
+    void UpdateIndexOfPlanets()
+    {
+        for (int i = 0; i < gameField.Length; i++)
+        {
             gameField[i].GetComponent<Planet_Behaviour>().indexInField = i;
         }
         CheckWinningCondition();
@@ -144,7 +153,14 @@ public  class Game_Master : MonoBehaviour {
         {
             print("Victory");
             goToNextLevel = true;
+            StartCoroutine(WaitAndLoad(2f));
         }
+    }
+
+    private IEnumerator WaitAndLoad(float waitTime)
+    {
+        yield return new WaitForSeconds(waitTime);
+        SceneManager.LoadScene(nextLevel);
     }
 
 }
