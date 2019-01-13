@@ -1290,6 +1290,7 @@ MonoBehaviour:
   - {fileID: 1890477867}
   - {fileID: 1290503202}
   - {fileID: 711361136}
+  direction: 1
 --- !u!61 &1120470509
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -2142,6 +2143,7 @@ MonoBehaviour:
   - {fileID: 667022016}
   - {fileID: 1940078747}
   - {fileID: 83777322}
+  direction: 1
 --- !u!61 &1658338843
 BoxCollider2D:
   m_ObjectHideFlags: 0

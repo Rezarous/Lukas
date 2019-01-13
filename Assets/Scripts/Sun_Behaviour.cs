@@ -2,36 +2,41 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Sun_Behaviour : MonoBehaviour {
+public class Sun_Behaviour : MonoBehaviour
+{
 
 
     public Game_Master manager;
     public int SunIndex; //first Sun = 0
     public Transform[] rotators;
-
+    public int direction;
 
     Transform[] planets;
     int numberOfPlanets;
 
 
-    void Start () {
+    void Start()
+    {
 
         numberOfPlanets = rotators.Length;
         planets = new Transform[numberOfPlanets];
 
-	}
-	
-	void Update () {
+    }
+
+    void Update()
+    {
 
 
     }
 
-    void OnMouseDown(){
+    void OnMouseDown()
+    {
         ClickBehvaiour();
     }
 
 
-    void ClickBehvaiour(){
+    void ClickBehvaiour()
+    {
         if (Game_Master.allowToClick)
         {
 
@@ -47,7 +52,8 @@ public class Sun_Behaviour : MonoBehaviour {
     }
 
 
-    void UpdatePlanetsArray(){
+    void UpdatePlanetsArray()
+    {
 
         for (int i = 0; i < rotators.Length; i++)
         {

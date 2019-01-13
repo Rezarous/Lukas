@@ -1093,6 +1093,7 @@ MonoBehaviour:
   - {fileID: 112225165}
   - {fileID: 727066544}
   - {fileID: 689480544}
+  direction: 0
 --- !u!61 &809214380
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -1647,10 +1648,6 @@ MonoBehaviour:
   - {fileID: 1704459646}
   - {fileID: 1267467571}
   levelWon: 0
-  levelRotations:
-  - {x: 0, y: 0, z: -10}
-  - {x: 0, y: 0, z: 31.008}
-  levelScales: []
   level: 1
   goToNextLevel: 0
 --- !u!4 &1041368315
@@ -1753,6 +1750,7 @@ MonoBehaviour:
   - {fileID: 1890477867}
   - {fileID: 1290503202}
   - {fileID: 711361136}
+  direction: 1
 --- !u!61 &1120470509
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -3551,6 +3549,7 @@ MonoBehaviour:
   - {fileID: 372086189}
   - {fileID: 1460939457}
   - {fileID: 1386709752}
+  direction: 0
 --- !u!61 &2136932559
 BoxCollider2D:
   m_ObjectHideFlags: 0
